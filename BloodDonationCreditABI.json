@@ -1,0 +1,616 @@
+[
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "donor",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "points",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "donationType",
+				"type": "string"
+			}
+		],
+		"name": "CreditPointsMinted",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "donorAddress",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "bloodType",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "date",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "points",
+				"type": "uint256"
+			}
+		],
+		"name": "DonorRegistered",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "institution",
+				"type": "address"
+			}
+		],
+		"name": "InstitutionAuthorized",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "institution",
+				"type": "address"
+			}
+		],
+		"name": "InstitutionRevoked",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "donor",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "authorizedAddress",
+				"type": "address"
+			}
+		],
+		"name": "QueryAuthorized",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "donor",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "authorizedAddress",
+				"type": "address"
+			}
+		],
+		"name": "QueryRevoked",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "institution",
+				"type": "address"
+			}
+		],
+		"name": "authorizeInstitution",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "authorizedAddress",
+				"type": "address"
+			}
+		],
+		"name": "authorizeQuery",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "authorizedInstitutions",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "donationRecords",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "date",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "donationType",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "bloodAmount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "pointsEarned",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "verifiedBy",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "donors",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "donorAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "bloodType",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "firstDonationDate",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "lastDonationDate",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "totalPoints",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "donationCount",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "donorAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getDonationRecord",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "date",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "donationType",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "bloodAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "pointsEarned",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "verifiedBy",
+						"type": "address"
+					}
+				],
+				"internalType": "struct BloodDonationCreditSystem.DonationRecord",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "donorAddress",
+				"type": "address"
+			}
+		],
+		"name": "getDonationRecordCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "donorAddress",
+				"type": "address"
+			}
+		],
+		"name": "getDonorInfo",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "donorAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "bloodType",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "firstDonationDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "lastDonationDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalPoints",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "donationCount",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct BloodDonationCreditSystem.DonorInfo",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "donorAddress",
+				"type": "address"
+			}
+		],
+		"name": "getTotalPoints",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"name": "pointsConfigs",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "basePoints",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "weight",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "description",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "queryAuthorizations",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "donorAddress",
+				"type": "address"
+			}
+		],
+		"name": "queryCreditLevel",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "points",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "creditLevel",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "donorAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "donationType",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "bloodAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "recordDonation",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "donorAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "bloodType",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "donationType",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "bloodAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "registerDonor",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "institution",
+				"type": "address"
+			}
+		],
+		"name": "revokeInstitution",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "authorizedAddress",
+				"type": "address"
+			}
+		],
+		"name": "revokeQuery",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "donationType",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "basePoints",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "weight",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "description",
+				"type": "string"
+			}
+		],
+		"name": "updatePointsConfig",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]
